@@ -10,11 +10,11 @@ How these image are made:
 
 3. Export GOARCH to something you want:
 
-export GOARCH=somearch
+> export GOARCH=somearch
 
 There are four Architecture for AnLinux:
 
-386
+> 386
 amd64
 arm
 arm64
