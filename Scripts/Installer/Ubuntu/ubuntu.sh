@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
+set -e
 folder=ubuntu-fs
 if [ -d "$folder" ]; then
 	first=1
@@ -24,7 +25,8 @@ if [ "$first" != 1 ];then
 		*)
 			echo "unknown architecture"; exit 1 ;;
 		esac
-		wget "https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Rootfs/Ubuntu/${archurl}/ubuntu-rootfs-${archurl}.tar.xz" -O $tarball
+		wget -c "https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Rootfs/Ubuntu/${archurl}/ubuntu-rootfs-${archurl}.tar.xz" -O "$tarball".inprogress
+		mv "$tarball".inprogress $tarball
 	fi
 	cur=`pwd`
 	mkdir -p "$folder"

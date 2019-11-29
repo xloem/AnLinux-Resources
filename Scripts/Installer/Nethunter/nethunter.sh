@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
+set -e
 if [ -d "$folder" ]; then
 	first=1
 	echo "skipping downloading"
@@ -23,7 +24,8 @@ if [ "$first" != 1 ];then
 		*)
 			echo "unknown architecture"; exit 1 ;;
 		esac
-		wget "https://build.nethunter.com/kalifs/kalifs-latest/kalifs-${archurl}-full.tar.xz" -O $tarball
+		wget -c "https://build.nethunter.com/kalifs/kalifs-latest/kalifs-${archurl}-full.tar.xz" -O "$tarball".inprogress
+		mv "$tarball".inprogress $tarball
 	fi
 	cur=`pwd`
 	echo "Decompressing Rootfs, please be patient."

@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
+set -e
 folder=arch-fs
 if [ -d "$folder" ]; then
 	first=1
@@ -16,7 +17,8 @@ if [ "$first" != 1 ];then
 		*)
 			echo "unknown architecture"; exit 1 ;;
 		esac
-		wget "http://os.archlinuxarm.org/os/ArchLinuxARM-${archurl}-latest.tar.gz" -O $tarball
+		wget -c "http://os.archlinuxarm.org/os/ArchLinuxARM-${archurl}-latest.tar.gz" -O "$tarball".inprogress
+		mv "$tarball".inprogress $tarball
 	fi
 	cur=`pwd`
 	mkdir -p "$folder"
